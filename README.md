@@ -1,2 +1,2 @@
-# HMatrix
-H matrix implementation
+# EMatrix
+E matrix implementation
