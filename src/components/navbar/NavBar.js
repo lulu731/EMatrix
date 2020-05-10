@@ -3,7 +3,6 @@ import 'tachyons';
 
 const NavBar = () => {
   return (
-    <div>
     <nav className="bg-black-90 flex justify-between bb b--white-10">
       <a className="link white-70 hover-white no-underline flex items-center pa3"
       href="#0">
@@ -23,7 +22,6 @@ const NavBar = () => {
         <a className="f6 dib white bg-animate hover-bg-white hover-black no-underline pv2 ph4 br-pill ba b--white-20" href="#0">Sign in</a>
       </div>
     </nav>
-  </div>
   )
 };
 
