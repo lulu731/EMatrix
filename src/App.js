@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
 import NavBar from './components/navbar/NavBar';
-import SignIn from './components/sign/SignIn';
+import Panels from './components/panels/Panels';
+import 'tachyons';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <SignIn />
-      <header className="App-header">
-      </header>
+        <Panels />
     </div>
   );
 }
