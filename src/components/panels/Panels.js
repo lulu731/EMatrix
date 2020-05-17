@@ -1,19 +1,26 @@
 import React from 'react';
+import Card from '../card/Card.js'
 import 'tachyons';
 
 const Panels = () => {
   return (
     <div>
+      <div style={{zIndex:-1, position: "absolute",
+      left: 0 , right: 0}} >
       <div className="vh-50">
-        <div className="fl w-50 h-100 ba bg-red tc">
+        <div className="fl w-50 h-100 ba bg-red tc"
+          style={{zIndex:-1}}>
           Urgent & Important
         </div>
-        <div className="fl ba w-50 h-100 bg-blue tc">
+        <div className="fl ba w-50 h-100 bg-blue tc"
+          style={{zIndex:-1}}>
           not Urgent & Important
         </div>
+
       </div>
       <div className="vh-50">
-        <div className="fl w-50 h-100 ba bg-light-blue tc">
+        <div className="fl w-50 h-100 ba bg-light-blue tc"
+          style={{zIndex:-1}}>
           Urgent & not Important
         </div>
         <div className="fl ba w-50 h-100 bg-green tc">
@@ -21,6 +28,8 @@ const Panels = () => {
         </div>
       </div>
     </div>
+    <Card />
+  </div>
   )
 };
 
