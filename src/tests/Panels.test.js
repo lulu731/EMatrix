@@ -19,15 +19,23 @@ it('init Panels', () => {
   act(() => {
     render(<Panels />, container);
   });
-  expect(container.textContent).toContain('Urgent & Important')
-  expect(container.textContent).toContain('TaskUI0');
+  let element = container.querySelector(".bg-red");
+  expect(element).not.toBeNull();
+  expect(element.textContent).toContain('Urgent & Important');
+  expect(element.textContent).toContain('TaskUI0');
 
-  expect(container.textContent).toContain('not Urgent & Important')
-  expect(container.textContent).toContain('TaskNUI0');
+  element = container.querySelector(".bg-blue");
+  expect(element).not.toBeNull();
+  expect(element.textContent).toContain('not Urgent & Important');
+  expect(element.textContent).toContain('TaskNUI0');
 
-  expect(container.textContent).toContain('Urgent & not Important')
-  expect(container.textContent).toContain('TaskUNI0');
+  element = container.querySelector(".bg-light-blue");
+  expect(element).not.toBeNull();
+  expect(element.textContent).toContain('Urgent & not Important');
+  expect(element.textContent).toContain('TaskUNI0');
 
-  expect(container.textContent).toContain('not Urgent & not Important')
-  expect(container.textContent).toContain('TaskNUNI0');
+  element = container.querySelector(".bg-green");
+  expect(element).not.toBeNull();
+  expect(element.textContent).toContain('not Urgent & not Important');
+  expect(element.textContent).toContain('TaskNUNI0');
 });
