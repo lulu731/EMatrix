@@ -3,6 +3,7 @@ import Card from '../card/Card.js'
 import TitleCard from '../card/TitleCard.js'
 import 'tachyons';
 
+const tasks = ['task0', 'task1', 'task2'];
 const Panels = () => {
   return (
     <div>
@@ -12,8 +13,13 @@ const Panels = () => {
         <div className="fl w-50 h-100 ba bg-red tc"
           style={{zIndex:-1}}>
           Urgent & Important
-          <TitleCard />
-          <TitleCard />
+          {tasks.map((item, i) =>{
+            return (
+              <TitleCard
+                key = {i}
+                title = {item}/>
+            )
+          })}
         </div>
         <div className="fl ba w-50 h-100 bg-blue tc"
           style={{zIndex:-1}}>

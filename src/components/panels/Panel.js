@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '../card/Card.js'
 import TitleCard from '../card/TitleCard.js'
 import 'tachyons';
 
@@ -16,8 +15,11 @@ class Panel extends React.Component {
         <div className="fl w-50 h-100 ba {this.bg} tc"
           style={{zIndex:-1}}>
           Urgent & Important
-          {this.tasks.forEach((item, i) => {
-            <TitleCard title = {item}/>
+          {this.tasks.map((item, i) => {
+            return (
+              <TitleCard
+                key = {i}
+                title = {item}/>)
           })}
         </div>
       </div>
