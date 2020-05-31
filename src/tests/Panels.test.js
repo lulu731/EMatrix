@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
+import { getByText } from '@testing-library/dom';
 import Panels from '../components/panels/Panels';
 
 let container = null;
@@ -38,4 +39,20 @@ it('init Panels', () => {
   expect(element).not.toBeNull();
   expect(element.textContent).toContain('not Urgent & not Important');
   expect(element.textContent).toContain('TaskNUNI0');
+});
+
+it('click on a TitleCard and open Card', () => {
+  act(() => {
+    render(<Panels />, container);
+  });
+
+  const titleCard = getByText(container, 'TaskUI0');
+
+  act(() => {
+    fireEvent(titleCard, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  expect(getByText(container, 'What ?')).not.toBeNull();
 });
