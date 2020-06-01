@@ -5,6 +5,7 @@ import 'tachyons';
 class Panel extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = props.onClick;
     switch (props.uAndI) {
       case 'u&i':
         this.bg = 'bg-red';
@@ -36,7 +37,8 @@ class Panel extends React.Component {
             return (
               <TitleCard
                 key = {i}
-                title = {item}/>)
+                title = {item}
+                onClick = {this.onClick}/>)
           })}
         </div>
       </div>

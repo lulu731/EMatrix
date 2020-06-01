@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
-import { getByText } from '@testing-library/dom';
+import { getByText, fireEvent } from '@testing-library/react';
 import Panels from '../components/panels/Panels';
 
 let container = null;
@@ -47,7 +47,6 @@ it('click on a TitleCard and open Card', () => {
   });
 
   const titleCard = getByText(container, 'TaskUI0');
-
   act(() => {
     fireEvent(titleCard, new MouseEvent('click', {
       bubbles: true,
