@@ -1,6 +1,7 @@
 export const tasks =
-{"tasks" : [
-  {"tasksUI": [
+{"tasks" : {
+
+  "tasksUI": [
     {"cardName": "TaskUI0",
     "what": "Buy toys",
     "who": "Lulu",
@@ -13,8 +14,9 @@ export const tasks =
       "what": "Play video games",
       "who": "Raph",
       "when": "Today"}
-  ]},
-  {"tasksNUI": [
+  ],
+
+  "tasksNUI": [
     {"cardName": "TaskNUI0",
       "what": "Eat",
       "who": "Raph",
@@ -23,8 +25,9 @@ export const tasks =
       "what": "Buy toys",
       "who": "Lulu",
       "when": "Now"}
-  ]},
-  {"tasksUNI": [
+  ],
+
+  "tasksUNI": [
     {"cardName": "TaskUNI0",
       "what": "Play video games",
       "who": "Raph",
@@ -37,8 +40,9 @@ export const tasks =
       "what": "Eat",
       "who": "Raph",
       "when": "Tomorrow"}
-  ]},
-  {"tasksNUNI": [
+  ],
+
+  "tasksNUNI": [
     {"cardName": "TaskNUNI0",
       "what": "Have diner",
       "who": "Me",
@@ -51,5 +55,6 @@ export const tasks =
       "what": "Shut down",
       "who": "Him",
       "when": "Now"}
-  ]}
-]}
+  ]
+  }
+}

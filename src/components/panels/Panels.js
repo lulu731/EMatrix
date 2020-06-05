@@ -8,9 +8,8 @@ class Panels extends React.Component {
     super(props);
     this.state = {
       cardOpen: null,
-      data : props.data
     };
-    this.tasks = this.state.data;
+    this.data = props.data;
     this.show = this.show.bind(this);
   };
 
@@ -19,10 +18,10 @@ class Panels extends React.Component {
     if (this.state.cardOpen) {
       card = <Card cardName = {this.state.cardOpen} />;
     };
-    let tasksUI = this.tasks.tasks[0].tasksUI;
-    let tasksNUI = this.tasks.tasks[1].tasksNUI;
-    let tasksUNI = this.tasks.tasks[2].tasksUNI;
-    let tasksNUNI = this.tasks.tasks[3].tasksNUNI;
+    let tasksUI = this.data.tasks.tasksUI;
+    let tasksNUI = this.data.tasks.tasksNUI;
+    let tasksUNI = this.data.tasks.tasksUNI;
+    let tasksNUNI = this.data.tasks.tasksNUNI;
     return (
       <div>
         <div style={{zIndex:-1, position: "absolute",
