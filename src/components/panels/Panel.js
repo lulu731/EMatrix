@@ -37,7 +37,7 @@ class Panel extends React.Component {
             return (
               <TitleCard
                 key = {i}
-                title = {item}
+                title = {item.cardName}
                 onClick = {this.onClick}/>)
           })}
         </div>

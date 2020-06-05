@@ -3,17 +3,14 @@ import Panel from '../panels/Panel.js'
 import Card from '../card/Card.js'
 import 'tachyons';
 
-const tasksUI = ['TaskUI0', 'task1', 'task2'];
-const tasksNUI = ['TaskNUI0', 'task1'];
-const tasksUNI = ['TaskUNI0', 'task1', 'task2'];
-const tasksNUNI = ['TaskNUNI0', 'task1', 'task2'];
-
 class Panels extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cardOpen: null,
+      data : props.data
     };
+    this.tasks = this.state.data;
     this.show = this.show.bind(this);
   };
 
@@ -22,6 +19,10 @@ class Panels extends React.Component {
     if (this.state.cardOpen) {
       card = <Card cardName = {this.state.cardOpen} />;
     };
+    let tasksUI = this.tasks.tasks[0].tasksUI;
+    let tasksNUI = this.tasks.tasks[1].tasksNUI;
+    let tasksUNI = this.tasks.tasks[2].tasksUNI;
+    let tasksNUNI = this.tasks.tasks[3].tasksNUNI;
     return (
       <div>
         <div style={{zIndex:-1, position: "absolute",

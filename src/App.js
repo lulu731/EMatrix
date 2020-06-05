@@ -4,11 +4,11 @@ import NavBar from './components/navbar/NavBar';
 import Panels from './components/panels/Panels';
 import 'tachyons';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <NavBar />
-      <Panels />
+      <Panels data = {props.tasks} />
     </div>
   );
 }

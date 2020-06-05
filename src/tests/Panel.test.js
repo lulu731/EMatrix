@@ -15,7 +15,10 @@ afterEach(() => {
   container = null;
 });
 
-const tasksUI = ['TaskUI0', 'TaskUI1', 'TaskUI2'];
+const tasksUI = [
+  {cardName : 'TaskUI0'},
+  {cardName : 'TaskUI1'},
+  {cardName : 'TaskUI2'}];
 it('urgent & important Panel', () => {
   act(() => {
     render(<Panel uAndI = 'u&i' tasksArray = {tasksUI}/>, container);
@@ -24,11 +27,11 @@ it('urgent & important Panel', () => {
   expect(container.textContent).toContain('Urgent & Important');
 });
 
-// const tasksNUI = ['TaskNUI0'];
-// it('not urgent & important Panel', () => {
-//   act(() => {
-//     render(<Panel uAndI = 'nu&i' tasksArray = tasksNUI/>, container);
-//   });
-//   expect(container.textContent).toContain('TaskNUI1');
-//   expect(container.textContent).toContain('not Urgent & Important');
-// });
+const tasksNUI = [{cardName : 'TaskNUI0'}];
+it('not urgent & important Panel', () => {
+  act(() => {
+    render(<Panel uAndI = 'nu&i' tasksArray = {tasksNUI}/>, container);
+  });
+  expect(container.textContent).toContain('TaskNUI0');
+  expect(container.textContent).toContain('not Urgent & Important');
+});

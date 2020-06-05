@@ -3,11 +3,13 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
 import { getByText, fireEvent } from '@testing-library/react';
 import Panels from '../components/panels/Panels';
+import {tasks} from './data/tasks.js';
 
 let container = null;
 beforeEach(() => {
   container = document.createElement("div");
   document.body.appendChild(container);
+  render(<Panels data = {tasks} />, container);
 })
 
 afterEach(() => {
@@ -17,9 +19,6 @@ afterEach(() => {
 });
 
 it('init Panels', () => {
-  act(() => {
-    render(<Panels />, container);
-  });
   let element = container.querySelector(".bg-red");
   expect(element).not.toBeNull();
   expect(element.textContent).toContain('Urgent & Important');
@@ -42,10 +41,6 @@ it('init Panels', () => {
 });
 
 it('click on a TitleCard and open Card', () => {
-  act(() => {
-    render(<Panels />, container);
-  });
-
   const titleCard = getByText(container, 'TaskUI0');
   act(() => {
     fireEvent(titleCard, new MouseEvent('click', {
