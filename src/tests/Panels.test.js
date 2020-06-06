@@ -48,5 +48,5 @@ it('click on a TitleCard and open Card', () => {
       cancelable: true
     }))
   });
-  expect(getByText(container, 'What ?')).not.toBeNull();
+  expect(getByText(container, 'What : Buy toys')).not.toBeNull();
 });

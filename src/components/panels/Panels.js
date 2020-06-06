@@ -16,7 +16,7 @@ class Panels extends React.Component {
   render() {
     let card = null;
     if (this.state.cardOpen) {
-      card = <Card cardName = {this.state.cardOpen} />;
+      card = <Card task = {this.state.cardOpen} />;
     };
     let tasksUI = this.data.tasks.tasksUI;
     let tasksNUI = this.data.tasks.tasksNUI;
@@ -44,8 +44,8 @@ class Panels extends React.Component {
     )
   };
 
-  show(cardName) {
-    this.setState({cardOpen : cardName});
+  show(task) {
+    this.setState({cardOpen : task});
   };
 };
 

@@ -1,29 +1,15 @@
 import React from 'react';
 import TitleCard from '../card/TitleCard.js'
 import 'tachyons';
+import {getBackgndAndUrgAndImp} from '../../common/common'
 
 class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = props.onClick;
-    switch (props.uAndI) {
-      case 'u&i':
-        this.bg = 'bg-red';
-        this.text = 'Urgent & Important';
-        break;
-      case 'nu&i':
-        this.bg = 'bg-blue';
-        this.text = 'not Urgent & Important';
-        break;
-      case 'u&ni':
-        this.bg = 'bg-light-blue';
-        this.text = 'Urgent & not Important';
-        break;
-      case 'nu&ni':
-        this.bg = 'bg-green';
-        this.text = 'not Urgent & not Important';
-        break;
-    }
+    const backGndAndUI = getBackgndAndUrgAndImp(props.uAndI);
+    this.bg = backGndAndUI.backGnd;
+    this.text = backGndAndUI.uAndI;
     this.tasks = props.tasksArray;
   };
 
@@ -37,7 +23,7 @@ class Panel extends React.Component {
             return (
               <TitleCard
                 key = {i}
-                title = {item.cardName}
+                task = {item}
                 onClick = {this.onClick}/>)
           })}
         </div>
