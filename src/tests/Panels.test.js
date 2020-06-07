@@ -50,3 +50,39 @@ it('click on a TitleCard and open Card', () => {
   });
   expect(getByText(container, 'What : Buy toys')).not.toBeNull();
 });
+
+it('close open Card with SAVE button', () => {
+  const titleCard = getByText(container, 'TaskUI0');
+  act(() => {
+    fireEvent(titleCard, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  const button = getByText(container, 'Save');
+  act(() => {
+    fireEvent(button, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  expect(getByText(container, 'What : Buy toys')).toBeNull();
+});
+
+it('close open Card with CANCEL button', () => {
+  const titleCard = getByText(container, 'TaskUI0');
+  act(() => {
+    fireEvent(titleCard, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  const button = getByText(container, 'Save');
+  act(() => {
+    fireEvent(button, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  expect(getByText(container, 'What : Buy toys')).toBeNull();
+});
