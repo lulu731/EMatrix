@@ -16,7 +16,7 @@ class Panels extends React.Component {
   render() {
     let card = null;
     if (this.state.cardOpen) {
-      card = <Card task = {this.state.cardOpen} />;
+      card = <Card task = {this.state.cardOpen} onClick = {this.show}/>;
     };
     let tasksUI = this.data.tasks.tasksUI;
     let tasksNUI = this.data.tasks.tasksNUI;

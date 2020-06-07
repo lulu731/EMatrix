@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
-import { getByText, fireEvent } from '@testing-library/react';
+import { getByText, queryByText, fireEvent } from '@testing-library/react';
 import Panels from '../components/panels/Panels';
 import {tasks} from './data/tasks.js';
 
@@ -66,7 +66,7 @@ it('close open Card with SAVE button', () => {
       cancelable: true
     }))
   });
-  expect(getByText(container, 'What : Buy toys')).toBeNull();
+  expect(queryByText(container, 'What : Buy toys')).toBeNull();
 });
 
 it('close open Card with CANCEL button', () => {
@@ -77,12 +77,12 @@ it('close open Card with CANCEL button', () => {
       cancelable: true
     }))
   });
-  const button = getByText(container, 'Save');
+  const button = getByText(container, 'Cancel');
   act(() => {
     fireEvent(button, new MouseEvent('click', {
       bubbles: true,
       cancelable: true
     }))
   });
-  expect(getByText(container, 'What : Buy toys')).toBeNull();
+  expect(queryByText(container, 'What : Buy toys')).toBeNull();
 });

@@ -14,6 +14,10 @@ const Card = (props) => {
           <li className="ph3 pv2 bb b--light-silver">When : {props.task.when}</li>
           <li className="red ph3 pv2 bb b--light-silver">{getUAndIText(props.task.uAndI)}</li>
         </ul>
+        <button className="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib red"
+          onClick={()=> props.onClick(null)}>Cancel</button>
+        <button className="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib dark-green"
+          onClick={()=> props.onClick(null)}>Save</button>
       </article>
     </div>
   )
