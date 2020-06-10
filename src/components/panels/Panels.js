@@ -16,31 +16,33 @@ class Panels extends React.Component {
   render() {
     let card = null;
     if (this.state.cardOpen) {
-      card = <Card task = {this.state.cardOpen} onClick = {this.show}/>;
+      card = <Card task = {this.state.cardOpen}
+        onClick = {this.show}/>;
     };
     let tasksUI = this.data.tasks.tasksUI;
     let tasksNUI = this.data.tasks.tasksNUI;
     let tasksUNI = this.data.tasks.tasksUNI;
     let tasksNUNI = this.data.tasks.tasksNUNI;
     return (
-      <div>
-        <div style={{zIndex:-1, position: "absolute",
-        left: 0 , right: 0}} >
-          <div className="vh-50">
-            <Panel uAndI = 'u&i' tasksArray = {tasksUI}
-            onClick = {this.show}/>
-            <Panel uAndI = 'nu&i' tasksArray = {tasksNUI}
-            onClick = {this.show}/>
-          </div>
-          <div className="vh-50">
-            <Panel uAndI = 'u&ni' tasksArray = {tasksUNI}
-            onClick = {this.show}/>
-            <Panel uAndI = 'nu&ni' tasksArray = {tasksNUNI}
-            onClick = {this.show}/>
-          </div>
+      <div className="vh-100" style={{position: "absolute",
+      left: 0 , right: 0}}>
+        <div className="vh-50">
+          <Panel uAndI = 'u&i' tasksArray = {tasksUI}
+          onClick = {this.show}/>
+          <Panel uAndI = 'nu&i' tasksArray = {tasksNUI}
+          onClick = {this.show}/>
+        </div>
+        <div className="vh-50">
+          <Panel uAndI = 'u&ni' tasksArray = {tasksUNI}
+          onClick = {this.show}/>
+          <Panel uAndI = 'nu&ni' tasksArray = {tasksNUNI}
+          onClick = {this.show}/>
+        </div>
+        <div  style={{position: 'fixed', left:'50%', top:'50%',
+        transform:'translate(-50%, -50%)', zIndex : '1'}}>
           {card}
+        </div>
       </div>
-    </div>
     )
   };
 
