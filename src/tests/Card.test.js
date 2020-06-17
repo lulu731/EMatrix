@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
+import { getByText, getByDisplayValue, fireEvent } from '@testing-library/react';
 import Card from '../components/card/Card';
 import {tasks} from './data/tasks.js';
 
@@ -21,8 +22,8 @@ it('card init', () => {
   act(() => {
     render(<Card task = {taskNUI0}/>, container);
   });
-  expect(container.textContent).toContain('TaskNUI0');
-  expect(container.textContent).toContain('Who : Raph');
-  expect(container.textContent).toContain('When : Tomorrow');
+  expect(getByDisplayValue(container, 'TaskNUI0')).not.toBeNull();
+  expect(getByDisplayValue(container, 'Raph')).not.toBeNull();
+  expect(getByDisplayValue(container, 'Tomorrow')).not.toBeNull();
   expect(container.textContent).toContain('not Urgent & Important');
 });

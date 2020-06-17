@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
-import { getByText, queryByText, fireEvent } from '@testing-library/react';
+import { getByText, queryByText, getByRole, getByDisplayValue,
+  queryByDisplayValue, fireEvent } from '@testing-library/react';
 import Panels from '../components/panels/Panels';
 import {tasks} from './data/tasks.js';
 
@@ -48,7 +49,7 @@ it('click on a TitleCard and open Card', () => {
       cancelable: true
     }))
   });
-  expect(getByText(container, 'What : Buy toys')).not.toBeNull();
+  expect(getByDisplayValue(container, 'Buy toys')).not.toBeNull();
 });
 
 it('close open Card with SAVE button', () => {
@@ -66,7 +67,7 @@ it('close open Card with SAVE button', () => {
       cancelable: true
     }))
   });
-  expect(queryByText(container, 'What : Buy toys')).toBeNull();
+  expect(queryByDisplayValue(container, /Buy toys/i)).toBeNull();
 });
 
 it('close open Card with CANCEL button', () => {
@@ -85,4 +86,28 @@ it('close open Card with CANCEL button', () => {
     }))
   });
   expect(queryByText(container, 'What : Buy toys')).toBeNull();
+});
+
+it('open Card then save', () => {
+  const titleCard = getByText(container, 'TaskNUI0');
+  act(() => {
+    fireEvent(titleCard, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  const card = getByRole(container, 'taskCard');
+  const cardName = getByDisplayValue(card, 'TaskNUI0');
+  const who = getByDisplayValue(card, 'Raph');
+  const button = getByText(container, 'Save');
+  act(() => {
+    cardName.value = 'NewTask';
+    who.value = 'Me';
+    fireEvent(button, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }));
+  });
+  expect(queryByText(container, 'TaskNUI0')).toBeNull();
+  expect(queryByText(container, 'NewTask')).not.toBeNull();
 });
