@@ -1,6 +1,22 @@
 language: node_js
-node_js :
-  - node
+
+node_js:
+- node
 
 git:
   depth: 3
+
+before_deploy:
+- npm install -g jsdoc
+- jsdoc -r src/ -d ./docs
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+- git tag $TRAVIS_TAG
+
+deploy:
+  provider: releases
+  api_key:
+    secure: qzUsq2lBk+IKRNs6aC2GNbAkIMPqkOS2xxpOqpYE/88PbkDZ+K3YQZWuj3+7GCMXBoWAayEiOgsKTi05CZClAaEO+TsCQr++t6eCkyqfrEp8IP997P7GPGpLOuop4WNVAiD7MUkgeMivS/SAOjYPCf1iTCwPqV5e3nb20lpZd9o1YONgh/VQosMiTaOPOjsMMBxrf8is6XjLEv0zWUsWF2pwdcCtz+knaxFNzZqLGo2bnfl0qGJygshewGqbOOTRdMRwlwkq64D30FIEwdoj5vk5e3ZOYjIkCIEvSJDqt3Pn0xlxqVGD9QjHc4JSL56nlIahtYLfk5iXw6PQIjUeY9QGsdX6EwVer+7g8z1cqayLFcBn3jcKd1PzeDB8rszFJE2vsHdP6c7+pApGUJLngioh92MGw2l5/NGD9P8TqH+nrnpsrwLNv3kA0T4G0z9bqSP/QESHwF8QmXtHKk7uCajGz14n/O/mBwBVYPkTW3omjLIVDD9OYobs+4J+PDTchbNSmQUcZpJ3KcCnZhp0K6QH4Qk3wrbYrPWYKNeCPZxSMeZy8V+Mo0edeJzesezX2KBf8VrR1hbmj5oGNhudmDHazVVemSiraIOJa03ZEfwNpRdC9kr9Vk0lWTago/gGQwwBMgQ4JuARTbj6Ys+5lFITeqPsPRNK8hiok0vIby8=
+  file: "./docs/*"
+  on:
+    repo: lulu731/EMatrix
+  skip_cleanup: 'true'
