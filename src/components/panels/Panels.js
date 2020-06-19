@@ -1,7 +1,15 @@
+/**
+ * @module
+ */
 import React from 'react';
 import Panel from '../panels/Panel.js'
 import 'tachyons';
 
+/**
+ * Panels component
+ * @param {object} props data object with tasks
+ * @returns {component}A Panels component
+ */
 const Panels = (props) => {
   const data = props.data;
   return (

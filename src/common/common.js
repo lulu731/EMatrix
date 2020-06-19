@@ -1,3 +1,13 @@
+
+/**
+ * @module
+ */
+
+/**
+ * Gets task importance and urgency
+ * @param  {string} uAndI set (u&i, nu&i, u&ni, nu&ni)
+ * @return {string}       text to be displayed for task
+ */
 export function getUAndIText(uAndI) {
   let text = null;
   switch (uAndI) {
@@ -14,12 +24,17 @@ export function getUAndIText(uAndI) {
       text = 'not Urgent & not Important';
       break;
     default:
-      text = 'Text undifined';
+      text = 'Text undefined';
       break;
   };
   return text;
 };
 
+/**
+ * Gets text and colors
+ * @param  {string} uAndI set (u&i, nu&i, u&ni, nu&ni)
+ * @return {object}       {uAndIText, textColor, backGndColor}
+ */
 export function getColorAndUrgAndImpText(uAndI) {
   const text = getUAndIText(uAndI);
   let color = null;

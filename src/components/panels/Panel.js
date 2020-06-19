@@ -1,11 +1,23 @@
+
+/**
+ * @module
+ */
 import React from 'react';
 import TitleCard from '../card/TitleCard.js'
 import 'tachyons';
 import {getColorAndUrgAndImpText} from '../../common/common';
 import Card from '../card/Card.js';
 
-
+/**
+ * Panel component.
+ * @class
+ * @extends React.Component
+ */
 class Panel extends React.Component {
+  /**
+   * @constructor
+   * @param {object} props uAndI - tasksArray
+   */
   constructor(props) {
     super(props);
     this.state = {cardOpen: null};

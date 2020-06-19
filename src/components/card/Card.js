@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import React from 'react';
 import 'tachyons';
 import {getColorAndUrgAndImpText} from '../../common/common';
@@ -5,7 +8,11 @@ import {getColorAndUrgAndImpText} from '../../common/common';
 const getValue = (elementId) => {
   return document.getElementById(elementId).value;
 }
-
+/**
+ * Card component describing a task.
+ * @param {object} props task - onCancelClick - onSaveClick - index
+ * @returns {component} Card
+ */
 const Card = (props) => {
     const task = props.task;
     const onCancelClick = props.onCancelClick;

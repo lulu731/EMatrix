@@ -1,6 +1,15 @@
+
+/**
+ * @module
+ */
 import React from 'react';
 import 'tachyons';
 
+/**
+ * TitleCard component with cardName.
+ * @param {object} props onClick - task
+ * @returns {component} TitleCard
+ */
 const TitleCard = (props) => {
   return (
     <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4"
