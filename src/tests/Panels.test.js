@@ -111,3 +111,19 @@ it('open Card then save', () => {
   expect(queryByText(container, 'TaskNUI0')).toBeNull();
   expect(queryByText(container, 'NewTask')).not.toBeNull();
 });
+
+it('drag and drop TitleCard', () =>{
+  const titleCard = getByText(container, 'TaskUI0');
+  const uAndIPanel = container.querySelector(".bg-light-blue");
+  act(() => {
+    fireEvent.drag(titleCard);
+    fireEvent.drop(uAndIPanel, titleCard);
+  });
+  act(() => {
+    fireEvent(titleCard, new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true
+    }))
+  });
+  expect(queryByDisplayValue(container, /Urgent & not Important/i)).not.toBeNull();
+});
