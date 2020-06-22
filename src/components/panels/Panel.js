@@ -34,11 +34,20 @@ class Panel extends React.Component {
     this.show = this.show.bind(this);
   };
 
+  /**
+   * Event handler when Save is clicked in a Card
+   * @param {object} task 
+   * @param {number} index Index in tasksArray
+   */
   onTaskSave(task, index) {
     this.tasks[index] = task;
     this.show(task, index);
   }
-
+  /**
+   * Diplays task Card
+   * @param {object} task 
+   * @param {number} index Index in tasksArray
+   */
   show(task, index) {
     if (!this.state.cardOpen) {
       this.setState({cardOpen : task});
@@ -48,8 +57,12 @@ class Panel extends React.Component {
     }
   };
 
-  deleteFromTasks(taskIndex) {
-    delete this.tasks[taskIndex];
+  /**
+   * Deletes the task from tasksArray
+   * @param {number} index Index in tasksArray
+   */
+  deleteFromTasks(index) {
+    delete this.tasks[index];
     this.setState({tasksNbr: this.tasks.length})
   }
 

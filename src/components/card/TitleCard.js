@@ -13,6 +13,7 @@ import 'tachyons';
 const TitleCard = (props) => {
   function dragStart(ev) {
     ev.dataTransfer.setData("text", props.task);
+    /**Sends task index to panel to delete task in tasksArray*/
     props.onDragTask(props.index);
   }
   

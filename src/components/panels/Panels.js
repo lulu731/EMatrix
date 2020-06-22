@@ -12,8 +12,10 @@ import 'tachyons';
  */
 const Panels = (props) => {
   const data = props.data;
+  /**
+   * @todo: implement to update json object with all tasks in app.
+   */
   const onTasksUpdate = () => {
-    
   };
   
   return (
