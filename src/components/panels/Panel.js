@@ -20,12 +20,17 @@ class Panel extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.state = {cardOpen: null};
+    this.state = {
+      cardOpen: null,
+      tasksNbr: props.tasksArray.length
+    };
+    this.uAndI = props.uAndI;
     const backGndAndUI = getColorAndUrgAndImpText(props.uAndI);
     this.bg = backGndAndUI.backGndColor;
     this.text = backGndAndUI.uAndIText;
     this.tasks = props.tasksArray;
     this.onTaskSave = this.onTaskSave.bind(this);
+    this.deleteFromTasks = this.deleteFromTasks.bind(this);
     this.show = this.show.bind(this);
   };
 
@@ -43,6 +48,11 @@ class Panel extends React.Component {
     }
   };
 
+  deleteFromTasks(taskIndex) {
+    delete this.tasks[taskIndex];
+    this.setState({tasksNbr: this.tasks.length})
+  }
+
   render() {
     let card = null;
     if (this.state.cardOpen) {
@@ -55,6 +65,19 @@ class Panel extends React.Component {
     const classProp = this.bg + " fl w-50 h-100 ba tc";
     return (
       <div className={classProp}
+
+      onDrop= {(ev) => {
+        ev.preventDefault();
+        let data = ev.dataTransfer.getData("text");
+        data.uAndI = this.uAndI;
+        this.tasks.push(data);
+        this.setState({tasksNbr: this.tasks.length})
+      }}
+
+      onDragOver= {(ev) => {
+        ev.preventDefault();
+      }}
+
         style={{zIndex:-1}}>
         {this.text}
         {this.tasks.map((item, i) => {
@@ -64,9 +87,10 @@ class Panel extends React.Component {
               task = {item}
               index = {i}
               onClick = {this.show}
-              onTaskSave = {this.onTaskSave}/>)
+              onTaskSave = {this.onTaskSave}
+              onDragTask = {this.deleteFromTasks}/>)
         })}
-        <div  style={{position: 'fixed', left:'50%', top:'50%',
+        <div style={{position: 'fixed', left:'50%', top:'50%',
         transform:'translate(-50%, -50%)', zIndex : '1'}}>
           {card}
         </div>

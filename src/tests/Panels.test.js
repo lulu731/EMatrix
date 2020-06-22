@@ -5,6 +5,7 @@ import { getByText, queryByText, getByRole, getByDisplayValue,
   queryByDisplayValue, fireEvent } from '@testing-library/react';
 import Panels from '../components/panels/Panels';
 import {tasks} from './data/tasks.js';
+import { createEvent } from '@testing-library/dom';
 
 let container = null;
 beforeEach(() => {
@@ -115,15 +116,45 @@ it('open Card then save', () => {
 it('drag and drop TitleCard', () =>{
   const titleCard = getByText(container, 'TaskUI0');
   const uAndIPanel = container.querySelector(".bg-light-blue");
-  act(() => {
-    fireEvent.drag(titleCard);
-    fireEvent.drop(uAndIPanel, titleCard);
+  
+  const setData = jest.fn();
+  const getData = jest.fn(() => {
+    return {cardName: "TaskUI0",
+    what: "Buy toys",
+    who: "Lulu",
+    when: "Now",
+    uAndI : "u&i"}
   });
+  const ev = {
+    dataTransfer: {
+      setData,
+      getData
+    }
+  }
+  const mockDragStartEvent = createEvent.dragStart(titleCard);
+  Object.assign(mockDragStartEvent, ev);
+  fireEvent(titleCard, mockDragStartEvent);
+  expect(setData).toHaveBeenCalledTimes(1);
+  expect(setData).toHaveBeenCalledWith(
+    "text",{cardName: "TaskUI0",
+    what: "Buy toys",
+    who: "Lulu",
+    when: "Now",
+    uAndI : "u&i"}
+  );
+  
+  const mockDropEvent = createEvent.drop(uAndIPanel);
+  Object.assign(mockDropEvent, ev);
+  fireEvent(uAndIPanel, mockDropEvent);
+  expect(getData).toHaveBeenCalledTimes(1);
+  
+  const droppedTitleCard = getByText(container, 'TaskUI0');
   act(() => {
-    fireEvent(titleCard, new MouseEvent('click', {
+    fireEvent(droppedTitleCard, new MouseEvent('click', {
       bubbles: true,
       cancelable: true
     }))
   });
-  expect(queryByDisplayValue(container, /Urgent & not Important/i)).not.toBeNull();
+  const card = getByRole(container, 'taskCard');
+  expect(getByText(card, /Urgent & not Important/i)).not.toBeNull();
 });

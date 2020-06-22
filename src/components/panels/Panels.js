@@ -12,16 +12,24 @@ import 'tachyons';
  */
 const Panels = (props) => {
   const data = props.data;
+  const onTasksUpdate = () => {
+    
+  };
+  
   return (
     <div className="vh-100" style={{position: "absolute",
     left: 0 , right: 0}}>
       <div className="vh-50">
-        <Panel uAndI = 'u&i' tasksArray = {data.tasks.tasksUI}/>
-        <Panel uAndI = 'nu&i' tasksArray = {data.tasks.tasksNUI}/>
+        <Panel uAndI = 'u&i' tasksArray = {data.tasks.tasksUI}
+          onTaskChange= {onTasksUpdate}/>
+        <Panel uAndI = 'nu&i' tasksArray = {data.tasks.tasksNUI}
+          onTaskChange= {onTasksUpdate}/>
       </div>
       <div className="vh-50">
-        <Panel uAndI = 'u&ni' tasksArray = {data.tasks.tasksUNI}/>
-        <Panel uAndI = 'nu&ni' tasksArray = {data.tasks.tasksNUNI}/>
+        <Panel uAndI = 'u&ni' tasksArray = {data.tasks.tasksUNI}
+          onTaskChange= {onTasksUpdate}/>
+        <Panel uAndI = 'nu&ni' tasksArray = {data.tasks.tasksNUNI}
+          onTaskChange= {onTasksUpdate}/>
       </div>
     </div>
   )
