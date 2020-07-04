@@ -79,17 +79,17 @@ class Panel extends React.Component {
     return (
       <div className={classProp}
 
-      onDrop= {(ev) => {
-        ev.preventDefault();
-        let data = ev.dataTransfer.getData("text");
-        data.uAndI = this.uAndI;
-        this.tasks.push(data);
-        this.setState({tasksNbr: this.tasks.length})
-      }}
+        onDrop= {(ev) => {
+          ev.preventDefault();
+          let data = ev.dataTransfer.getData("text");
+          data.uAndI = this.uAndI;
+          this.tasks.push(data);
+          this.setState({tasksNbr: this.tasks.length})
+        }}
 
-      onDragOver= {(ev) => {
-        ev.preventDefault();
-      }}
+        onDragOver= {(ev) => {
+          ev.preventDefault();
+        }}
 
         style={{zIndex:-1}}>
         {this.text}
@@ -104,8 +104,8 @@ class Panel extends React.Component {
               onDragTask = {this.deleteFromTasks}/>)
         })}
         <div style={{position: 'fixed', left:'50%', top:'50%',
-        transform:'translate(-50%, -50%)', zIndex : '1'}}>
-          {card}
+          transform:'translate(-50%, -50%)', zIndex : '1'}}>
+            {card}
         </div>
       </div>
     )
