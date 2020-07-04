@@ -6,7 +6,8 @@ import React from 'react';
 import TitleCard from '../card/TitleCard.js'
 import 'tachyons';
 import {getColorAndUrgAndImpText} from '../../common/common';
-import Card from '../card/Card.js';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
+import Card, {newTask} from '../card/Card.js';
 
 /**
  * Panel component.
@@ -92,21 +93,28 @@ class Panel extends React.Component {
         }}
 
         style={{zIndex:-1}}>
-        {this.text}
-        {this.tasks.map((item, i) => {
-          return (
-            <TitleCard
-              key = {item.cardName}
-              task = {item}
-              index = {i}
-              onClick = {this.show}
-              onTaskSave = {this.onTaskSave}
-              onDragTask = {this.deleteFromTasks}/>)
-        })}
-        <div style={{position: 'fixed', left:'50%', top:'50%',
-          transform:'translate(-50%, -50%)', zIndex : '1'}}>
-            {card}
-        </div>
+        <ContextMenuTrigger id="PanelContextMenu">
+          {this.text}
+          {this.tasks.map((item, i) => {
+            return (
+              <TitleCard
+                key = {item.cardName}
+                task = {item}
+                index = {i}
+                onClick = {this.show}
+                onTaskSave = {this.onTaskSave}
+                onDragTask = {this.deleteFromTasks}/>)
+          })}
+          <div style={{position: 'fixed', left:'50%', top:'50%',
+            transform:'translate(-50%, -50%)', zIndex : '1'}}>
+              {card}
+          </div>
+        </ContextMenuTrigger>
+        <ContextMenu id="PanelContextMenu">
+          <MenuItem onClick={() => {
+            this.show(newTask, this.tasks.length);
+          }}>Create a task</MenuItem>
+        </ContextMenu>
       </div>
     )
   };
