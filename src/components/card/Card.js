@@ -5,6 +5,17 @@ import React from 'react';
 import 'tachyons';
 import {getColorAndUrgAndImpText} from '../../common/common';
 
+/**
+ * @constant newTask New task created by user
+ */
+const newTask = {
+  cardName: "New Task",
+  what: "",
+  who: "",
+  when: "",
+  uAndI: ""
+};
+
 const getValue = (elementId) => {
   return document.getElementById(elementId).value;
 }
@@ -47,4 +58,5 @@ const Card = (props) => {
     )
 };
 
-export default Card
+export default Card;
+export {newTask};
