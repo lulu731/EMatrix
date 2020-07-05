@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
-import { getByText, getByRole, getByDisplayValue, fireEvent } from '@testing-library/react';
+import { getByText, getByRole, getByDisplayValue, queryByText, fireEvent } from '@testing-library/react';
 import Panel from '../components/panels/Panel';
 
 let container = null;
@@ -29,7 +29,8 @@ describe('Panel component should', () => {
     expect(container.textContent).toContain('Urgent & Important');
   });
   
-  const tasksNUI = [{cardName : 'TaskNUI0'}];
+  const tasksNUI = [{cardName : 'TaskNUI0'},
+                    {cardName : 'TaskNUI1'}];
   it('display a text as not urgent & important', () => {
     act(() => {
       render(<Panel uAndI = 'nu&i' tasksArray = {tasksNUI}/>, container);
@@ -40,6 +41,8 @@ describe('Panel component should', () => {
   
   it('be able to create a task', () => {
     /**Right click on panel to open context menu */
+    var tasksNUI = [{cardName : 'TaskNUI0'},
+                    {cardName : 'TaskNUI1'}];
     act(() => {
       render(<Panel uAndI = 'nu&i' tasksArray = {tasksNUI} />, container);
       const panel = getByText(container, 'not Urgent & Important'); 
@@ -57,7 +60,27 @@ describe('Panel component should', () => {
     act(() => {
       fireEvent.click(getByText(card, /Save/i));
     });
-    expect(getByText(container, 'New Task')).not.toBeNull();
+    expect(getByText(container, 'New Task')).not.toBeNull();    
+  });
+
+  it('be able to delete a task', () => {
+    /**Right click on a titleTask to open context menu */
+    var tasksNUI = [{cardName : 'TaskNUI0'}];
+    console.log({tasksNUI});
+    
+    
+    act(() => {
+      render(<Panel uAndI = 'nu&i' tasksArray = {tasksNUI} />, container);
+      const titleCard = getByText(container, 'TaskNUI0'); 
+      fireEvent.click(titleCard, {button : 2});
+    });
+    const menu = getByText(container, 'Delete the task');
+    expect(menu).not.toBeNull();
+    /**Click on menu to delete the task */
+    act(() => {
+      fireEvent.click(menu);
+    })
+    expect(queryByText(container, 'TaskNUI0')).toBeNull();    
   });
 });
 

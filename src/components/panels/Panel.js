@@ -103,7 +103,7 @@ class Panel extends React.Component {
                 index = {i}
                 onClick = {this.show}
                 onTaskSave = {this.onTaskSave}
-                onDragTask = {this.deleteFromTasks}/>)
+                onDeleteTask = {this.deleteFromTasks}/>)
           })}
           <div style={{position: 'fixed', left:'50%', top:'50%',
             transform:'translate(-50%, -50%)', zIndex : '1'}}>
