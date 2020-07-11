@@ -3,47 +3,31 @@ import './App.css';
 import NavBar from './components/navbar/NavBar';
 import Panels from './components/panels/Panels';
 import 'tachyons';
-import { render } from '@testing-library/react';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    
+    // this.state = null;
     this.state = {
-      tasks :   {
-        "tasks" : {
-          "tasksUI": [],
-          "tasksNUI": [],
-          "tasksUNI": [],
-          "tasksNUNI": []
-        }
-      }
+      tasks : null  
     }
   }
 
   componentDidMount() {
-    // console.log('in did mount');
-    const resp = fetch('http://localhost:3000/')
-      // .then(function(response) {
-      //   // this.setState({tasks : response});
-      //   console.log('response répondue');
-        
-      //   if (response.ok)
-      //   {console.log('in response');}
-      //   else
-      //   {console.log('response pas OK');
-      //   }
-        
-      // })
+    fetch('http://localhost:3000/tasks')
+      .then(response => {
+        return response.json()        
+      })
+      .then(data => {
+        this.setState({tasks: data});
+      })
+  }  
       // .catch(function(error) {
-      //   console.log('problem');
-      // })
-    console.log('out did mount', resp);
-    
-  }
+      //   console.log('problem: ', error);
+      // })    
+  
 
-  render() {
-    
+  render() {  
     return (
       <div className="App">
         <NavBar />

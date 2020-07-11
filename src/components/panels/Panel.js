@@ -32,14 +32,14 @@ class Panel extends React.Component {
     this.tasks = props.tasksArray;
     this.onTaskSave = this.onTaskSave.bind(this);
     this.deleteFromTasks = this.deleteFromTasks.bind(this);
-    this.show = this.show.bind(this);
+    this.show = this.show.bind(this);    
   };
 
   /**
    * Event handler when Save is clicked in a Card
    * @param {object} task 
    * @param {number} index Index in tasksArray
-   */
+   */ // console.log('data in panels ', data);
   onTaskSave(task, index) {
     this.tasks[index] = task;
     this.show(task, index);

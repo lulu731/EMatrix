@@ -1,34 +1,27 @@
 const express = require('express');
-// var cors = require('cors');
+const cors = require('cors');
 fs = require('fs');
 const app = express();
 
-// const data = {
-//     "essai" : "truc"
-// }
-
-// app.use((req, res, next) => {
-//     cors();
-//     next()
-// });
-app.use(express.static('public'));
+app.use(cors());
+// app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+// app.use(express.json());
 
 // const data = null;
 
-app.get('/test', (req, res) => {
-    console.log('in get ');
-    fs.readFile('./public/test.json', 'utf8', (err, data) => {
-        res.send('<h6>' + data + '</h6>');
+app.get('/tasks', (req, res) => {
+    fs.readFile('./public/tasks.json', 'utf8', (err, data) => {
+        console.log('in get, data:', data);
+        res.send(data);
     });
     
 })
 
-app.put('/test', (req, res) => {
+app.put('/tasks', (req, res) => {
     const data = req.body;
     console.log(JSON.stringify(data));
-    fs.writeFile('./public/test.json', JSON.stringify(data), (err) => {
+    fs.writeFile('./public/tasks.json', JSON.stringify(data), (err) => {
         if (err) {res.send('<h6>Not OK</h6>')}
         else 
         { console.log(data);
