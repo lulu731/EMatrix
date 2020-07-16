@@ -8,13 +8,17 @@ import {getColorAndUrgAndImpText} from '../../common/common';
 /**
  * @constant newTask New task created by user
  */
-const newTask = {
-  cardName: "New Task",
-  what: "",
-  who: "",
-  when: "",
-  uAndI: ""
-};
+const newTask = function (panelUAndI) {
+  let task =
+    {
+      cardName: "New Task",
+      what: "What ?",
+      who: "Who ?",
+      when: "When ?",
+      uAndI: panelUAndI
+    }
+  return task;
+} 
 
 const getValue = (elementId) => {
   return document.getElementById(elementId).value;

@@ -77,6 +77,7 @@ class Panel extends React.Component {
       />;
     };
     const classProp = this.bg + " fl w-50 h-100 ba tc";
+    const idContextMenu = `contextMenu_${this.uAndI}`;
     return (
       <div className={classProp}
 
@@ -93,7 +94,7 @@ class Panel extends React.Component {
         }}
 
         style={{zIndex:-1}}>
-        <ContextMenuTrigger id="PanelContextMenu">
+        <ContextMenuTrigger id={idContextMenu}>
           {this.text}
           {this.tasks.map((item, i) => {
             return (
@@ -110,9 +111,9 @@ class Panel extends React.Component {
               {card}
           </div>
         </ContextMenuTrigger>
-        <ContextMenu id="PanelContextMenu">
+        <ContextMenu id={idContextMenu}>
           <MenuItem onClick={() => {
-            this.show(newTask, this.tasks.length);
+            this.show(newTask(this.uAndI), this.tasks.length);
           }}>Create a task</MenuItem>
         </ContextMenu>
       </div>
